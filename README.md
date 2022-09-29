@@ -10,16 +10,17 @@ The following should work on a fresh installation of Ubuntu 20.04.
 Clone this repository and run the following in the checked out directory:
 
 ```console
-sudo apt install gcc opam autoconf automake make gperf python indent emacs flex bison
+sudo apt install gcc opam autoconf automake make gperf python indent emacs flex bison gperf
 git submodule update --init --recursive
 opam init -n
-opam switch create . 3.11.2
+opam switch create . 4.00.0
 eval $(opam env)
 ./configure
 make
 ```
 
-If you get errors, try to rebuild banshee:
+The makefiles are missing a lot of dependencies, so you may need to run make multiple times
+to get the correct results. If you get errors, try to rebuild banshee:
 
 ```console
 cd banshee

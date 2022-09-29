@@ -1,9 +1,9 @@
 (*
  *
- * Copyright (c) 2004-2007, 
+ * Copyright (c) 2004-2007,
  *  Polyvios Pratikakis <polyvios@cs.umd.edu>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -68,13 +68,13 @@ end
 let removeAliasAttr = visitCilFile (new rmAliasVisitor (H.create 1) (H.create 1))
 
 (* should be disabled by default, debug use only: *)
-let feature : Feature.t =
-  { fd_name = "rmalias";
-    fd_enabled = ref false;
-    fd_description = "remove \"alias\" attribute";
-    fd_extraopt = [];
-    fd_doit = removeAliasAttr;
-    fd_post_check = false;
-  }
- 
-let () = Feature.register feature
+(* let feature : Feature.t = *)
+(*   { fd_name = "rmalias"; *)
+(*     fd_enabled = ref false; *)
+(*     fd_description = "remove \"alias\" attribute"; *)
+(*     fd_extraopt = []; *)
+(*     fd_doit = removeAliasAttr; *)
+(*     fd_post_check = false; *)
+(*   } *)
+
+(* let () = Feature.register feature *)

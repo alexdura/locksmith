@@ -1,9 +1,9 @@
 (*
  *
- * Copyright (c) 2004-2007, 
+ * Copyright (c) 2004-2007,
  *  Polyvios Pratikakis <polyvios@cs.umd.edu>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -46,4 +46,4 @@
 val removeAliasAttr : Cil.file -> unit
 
 (* Enables using as a cil module.  Disabled by default *)
-val feature : Feature.t
+(* val feature : Feature.t *)

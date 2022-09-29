@@ -1,11 +1,11 @@
 (*
  *
- * Copyright (c) 2004-2007, 
+ * Copyright (c) 2004-2007,
  *  Polyvios Pratikakis <polyvios@cs.umd.edu>
  *  Michael Hicks       <mwh@cs.umd.edu>
  *  Jeff Foster         <jfoster@cs.umd.edu>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -36,5 +36,5 @@
  *)
 val getLiveSet : int -> Usedef.VS.t option
 val computeLiveness : Cil.fundec -> unit
-val feature : Feature.t
+(* val feature : Feature.t *)
 val options : (string * Arg.spec * string) list

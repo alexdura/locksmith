@@ -1,11 +1,11 @@
 (*
  *
- * Copyright (c) 2004-2007, 
+ * Copyright (c) 2004-2007,
  *  Polyvios Pratikakis <polyvios@cs.umd.edu>
  *  Michael Hicks       <mwh@cs.umd.edu>
  *  Jeff Foster         <jfoster@cs.umd.edu>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -108,14 +108,14 @@ let live_vars_in_instr live_set instr =
 (** Customization module for live variables *)
 module LVT = struct
   let name = "livevars"
-  let debug = debug 
+  let debug = debug
 
   type t = VS.t
 
-  let pretty () live_vars = 
+  let pretty () live_vars =
     VS.fold (fun s d -> (text s.vname) ++ d) live_vars nil
 
-   (** For each statement in a function we keep the set of live variables. 
+   (** For each statement in a function we keep the set of live variables.
     * Indexed by statement id *)
   let stmtStartData = IH.create 42
 
@@ -127,20 +127,20 @@ module LVT = struct
     else Some ret
 
   let combineSuccessors s1 s2 = VS.union s1 s2
-  
+
   let doInstr instr live_set =
     let live_set = live_vars_in_instr live_set instr in DF.Done(live_set)
 
   let doStmt stmt =
     match stmt.succs with
       [] ->
-        let res' = 
-         match stmt.skind with 
-           Instr il -> 
-             let handleInstruction i s = 
+        let res' =
+         match stmt.skind with
+           Instr il ->
+             let handleInstruction i s =
                currentLoc := get_instrLoc i;
-               let action = doInstr i s in 
-               match action with 
+               let action = doInstr i s in
+               match action with
                | DF.Done s' -> s'
                | DF.Default -> s (* do nothing *)
                | DF.Post f -> f s
@@ -194,20 +194,19 @@ class liveVarsFunVisitor : cilVisitor = object (self)
 end
 
 (* should be disabled by default, debug use only: *)
-let feature : Feature.t =
-  { fd_name = "livevars";
-    fd_enabled = ref false;
-    fd_description = "live variable sets";
-    fd_extraopt = [];
-    fd_doit = 
-      (function (f: file) -> begin
-        if !debug then
-          ignore(E.log "live vars analysis starting...\n");
-        let lvvisitor = new liveVarsFunVisitor in
-          visitCilFileSameGlobals lvvisitor f;
-        if !debug then
-          ignore(E.log "live vars analysis done.\n");
-      end);
-    fd_post_check=false;
-  }
- 
+(* let feature : Feature.t = *)
+(*   { fd_name = "livevars"; *)
+(*     fd_enabled = ref false; *)
+(*     fd_description = "live variable sets"; *)
+(*     fd_extraopt = []; *)
+(*     fd_doit =  *)
+(*       (function (f: file) -> begin *)
+(*         if !debug then *)
+(*           ignore(E.log "live vars analysis starting...\n"); *)
+(*         let lvvisitor = new liveVarsFunVisitor in *)
+(*           visitCilFileSameGlobals lvvisitor f; *)
+(*         if !debug then *)
+(*           ignore(E.log "live vars analysis done.\n"); *)
+(*       end); *)
+(*     fd_post_check=false; *)
+(*   } *)
